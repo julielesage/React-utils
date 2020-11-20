@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import App from './App';
-import AppProvider from './context/AppProvider';
+import App from './src/App';
+import AppProvider from './src/context/AppProvider';
 //import ThemeContext from './context/ThemeContext'
 
 const rootElement = document.getElementById('root');
