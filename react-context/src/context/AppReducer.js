@@ -9,6 +9,7 @@ const AppReducer = (state, action) => {
       return { ...state, form: { ...state.form, [key]: value } };
     }
     default:
+      // utile si type mal tapé, sinon chaud de trouver l'erreur en js
       throw new Error(`Unhandle action type : ${action.type}`);
   }
 };

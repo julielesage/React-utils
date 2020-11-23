@@ -10,32 +10,33 @@ const App = () => {
   //FIRST
   //const [state, dispatch] = useReducer(appReducer, initialState); 
   //appeler un useReducer qui appelle un app reducer sur tous les composants ? #!!NON
-  // console.log("state : ", state);
 
   //SECOND
   const { state, dispatch } = useApp(); // petit custom !
+
+  // si form a bcp de champ (12), ceci évite 12 useState !
   const { firstname, lastname } = state.form;
   console.log(state);
 
   const onChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value } = e.target; // magique
     return dispatch({ type: 'UPDATE_FIELD', payload: { key: name, value: value } })
   };
 
   return (
     <div className="App">
       <Head />
-      <input 
-        name="firstname" 
-        placeholder="Firstname" 
+      <input
+        name="firstname"
+        placeholder="Firstname"
         value={firstname}
-        onChange={onChange} 
+        onChange={onChange} // pas besoin d'envoyer les name et value :)
       />
-      <input 
-        name="lastname" 
-        placeholder="Lastname" 
+      <input
+        name="lastname"
+        placeholder="Lastname"
         value={lastname}
-        onChange={onChange} 
+        onChange={onChange}
       />
       <br />
       couunt : {state.count}
