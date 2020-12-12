@@ -1,3 +1,14 @@
+//NEW PROJECT
+// npx create-react-app my-app --template typescript
+// or
+// yarn create react-app my-app --template typescript
+
+//ADDING TYPESCRIPT TO EXISTING PROJECT
+// npm install --save typescript @types/node @types/react @types/react-dom @types/jest
+// or
+// yarn add typescript @types/node @types/react @types/react-dom @types/jest
+
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';

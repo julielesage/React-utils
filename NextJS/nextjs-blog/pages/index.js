@@ -5,9 +5,28 @@
 
 import Head from 'next/head'
 import Layout, { siteTitle } from '../components/layout'
-import utilStyles from '../styles/utils.module.css'
+import utilStyles from '../styles/utils.module.css';
+import { getSortedPostsData } from '../lib/posts';
+import Link from 'next/link';
+import Date from '../components/date';
 
-export default function Home() {
+//getStaticProps can only be exported from a page. You can’t export it from non-page files.
+//One of the reasons for this restriction is that React needs to have all the required data before the page is rendered.
+// THIS IS FOR PRE-RENDERING at BUILD-TIME not CLIENT REQUEST for request we use "getServerSideProps(context)" but slow
+// but then we can call client-side rendering for Private, user-specific pages where SEO is not relevant
+//The team behind Next.js has created a React hook for data fetching called SWR. 
+// We highly recommend it if you’re fetching data on the client side. 
+export async function getStaticProps() {
+  const allPostsData = getSortedPostsData()
+  return {
+    props: {
+      allPostsData
+    }
+  }
+}
+
+
+export default function Home({ allPostsData }) {
   return (
     <Layout home>
       <Head>
@@ -20,9 +39,37 @@ export default function Home() {
           <a href="https://nextjs.org/learn">our Next.js tutorial</a>.)
         </p>
       </section>
+      <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
+        <h2 className={utilStyles.headingLg}>Blog</h2>
+        <ul className={utilStyles.list}>
+          {allPostsData.map(({ id, date, title }) => (
+            <li className={utilStyles.listItem} key={id}>
+              <Link href={`/posts/${id}`}>
+                {title}
+              </Link>
+              <br />
+              <small className={utilStyles.lightText}>
+                <Date dateString={date} />
+              </small>
+            </li>
+          ))}
+        </ul>
+      </section>
     </Layout>
   )
 }
+
+
+// import useSWR from 'swr'
+
+// function Profile() {
+//   const { data, error } = useSWR('/api/user', fetch)
+
+//   if (error) return <div>failed to load</div>
+//   if (!data) return <div>loading...</div>
+//   return <div>hello {data.name}!</div>
+// }
+
 
 // premier jet avec css-in-js
 // export default function Home() {

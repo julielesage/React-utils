@@ -4,7 +4,7 @@ export type HeaderType = {
 
 export type UserType = {
   firstname: string,
-  lastname: string,
+  lastname?: string,
   age?: number
 }
 

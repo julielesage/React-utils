@@ -31,7 +31,7 @@ console.log(renderAge(31)); //31 ans : ca passe
 //attention en parametre d'une fonction si optionnal ca doit etre à la fin
 // avec type alias on peut computer (??)
 type User = {
-  firstname?: string,
+  firstname?: string | undefined,
   lastname: string
 }
 // avec interface on peut "extend" ou merger, et VSC informe sur l'interface avec la souris
@@ -39,9 +39,12 @@ interface User2 {
   firstname?: string,
   lastname: string
 }
+const renderString = ({ firstname, lastname }: User): string => {
+  return `hello ${firstname} ${lastname}`;
+}
 
-const renderUser2 = ({ firstname, lastname }: User): string => {
-  return `${firstname} ${lastname}`;
+const renderUser2 = ({ firstname, lastname }: User2): User => {
+  return { firstname, lastname };
 }
 renderUser2({ lastname: "persia" });
 
