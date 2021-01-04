@@ -3,6 +3,8 @@
 // <Head> is a React Component that is built into Next.js. It allows you to modify the <head> of a page.
 // style-jsx is a CSS-in-JS library, Next also works with styled-components or emotion or tailwind /css and scss
 
+// NEXT can be deployed from git with Vercel
+
 import Head from 'next/head'
 import Layout, { siteTitle } from '../components/layout'
 import utilStyles from '../styles/utils.module.css';
