@@ -1,0 +1,28 @@
+import React from "react";
+import './style.css';
+
+const SuspenseComponent = ({ id }) => {
+
+	// no need for isLoading anymore
+
+	// works on Client for lazy-loading with React.lazy
+
+	// useful for streaming server rendring
+
+	// only works with Relay for data fetching for now ... 
+	// will work later on Apollo, React Query, useSWR, 
+
+	const data = useData(id);
+	return (
+		<Suspense fallback= {< Skeleton />}>
+			<Header />
+			< Suspense fallback = {< ListPlaceholder />}>
+				<ListLayout>
+					<SpecialList data={ data } />
+				</ListLayout>
+					< /Suspense>
+					< /Suspense>
+);
+};
+
+export default SuspenseComponent;
